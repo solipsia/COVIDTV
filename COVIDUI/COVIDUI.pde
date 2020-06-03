@@ -129,11 +129,11 @@ void draw() {
     point(i+1280,1040);
   }
   countries.get(countrylookup.get("US")).drawsmall(1070,0*90+0,18);
-  countries.get(countrylookup.get("GB")).drawsmall(1070,90*1+0,18);
-  countries.get(countrylookup.get("IT")).drawsmall(1070,90*2+0,18);
-  countries.get(countrylookup.get("BR")).drawsmall(1070,90*3+0,18);
-  countries.get(countrylookup.get("FR")).drawsmall(1070,90*4+0,18);
-  countries.get(countrylookup.get("ES")).drawsmall(1070,90*5+0,18);
+  countries.get(countrylookup.get("BR")).drawsmall(1070,90*1+0,18);
+  countries.get(countrylookup.get("GB")).drawsmall(1070,90*2+0,18);
+  countries.get(countrylookup.get("ES")).drawsmall(1070,90*3+0,18);
+  countries.get(countrylookup.get("IT")).drawsmall(1070,90*4+0,18);
+  countries.get(countrylookup.get("FR")).drawsmall(1070,90*5+0,18);
   countries.get(countrylookup.get("DE")).drawsmall(1070,90*6+0,18);
   countries.get(countrylookup.get("SE")).drawsmall(1070,90*7+0,18);
   countries.get(countrylookup.get("KR")).drawsmall(1070,90*8+0,18);
@@ -405,7 +405,7 @@ class Country {
       flashtimer=flashtimer-1;
       fill(flashhue,255,255,map(flashtimer,0,flashspeed,0,255)); 
       noStroke();
-      rect(x+boxwidth/2+20,y,boxwidth/2+5,boxheight/3);
+      rect(x+boxwidth/2+10,y+5,boxwidth/2+10,boxheight/3);
     }
 
     if (flashing==1 && flashtimer==0) {

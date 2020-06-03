@@ -229,7 +229,7 @@ void reportPercentageofWorld() {
     stroke(55,255,120);
     rect(120,1040,5,5);
     fill(255,0,255,255);
-    text("= "+prettyInt((int)((pop)/(sizex*sizey)))+ " people per cell",130,1040);
+    text("= "+prettyInt((int)((pop)/(sizex*sizey)))+ " people",130,1040);
     
 }
 
@@ -280,6 +280,12 @@ class Country {
   float maxdailydeaths;
   ArrayList<Float> dailyconfirmed;
   float maxdailyconfirmed;
+  int flashing=0;
+  int flashtimer=0;
+  int flashspeed=40;
+  int confirmed_lastframe=0;
+  int deaths_lastframe=0;
+  int flashhue;
   
   Country (String name_,String iso_, int latestconfirmed_, int yesterdayconfirmed_, int latestdeaths_, int yesterdaydeaths_, Date latestdate_, Date secondlatestdate_) {
     name=name_;
@@ -370,14 +376,16 @@ class Country {
     text(this.name, x+50+10, y+25);
     noStroke();
     fill(255,0,0,240);
-    String confirmed=prettyDouble(this.currentConfirmed());
-    String deaths=prettyDouble(this.currentDeaths());
-    rect(x+295-confirmed.length()*(10),y+5,confirmed.length()*(10)+120,28);
+    double confirmed=this.currentConfirmed();
+    double deaths=this.currentDeaths();
+    String confirmedstr=prettyDouble(confirmed);
+    String deathsstr=prettyDouble(deaths);
+    rect(x+295-confirmedstr.length()*(10),y+5,confirmedstr.length()*(10)+120,28);
     textSize(fontsize);
     textAlign(RIGHT);
     fill(0,0,255,200);
-    text(confirmed, x+90+215, y+25);
-    text(deaths, x+90+315, y+25);
+    text(confirmedstr, x+90+215, y+25);
+    text(deathsstr, x+90+315, y+25);
     fill(0,0,100);
     textSize(fontsize-5);
     text("c", x+103+210, y+25);
@@ -386,6 +394,26 @@ class Country {
     image(this.flag,x,y+5);
     drawDailyDeaths(x,y+50,boxwidth,boxheight-50);
     drawDailyConfirmed(x,y+50,boxwidth,boxheight-50);
+    
+    if ((confirmed_lastframe!=(int)confirmed||deaths_lastframe!=(int)deaths)&&frameCount>1) {
+      flashtimer=flashspeed;
+      flashing=1;
+      if (confirmed_lastframe!=(int)confirmed) {flashhue=30;} else {flashhue=255;} //deaths versus confirmed
+    }
+    
+    if (flashing==1) {
+      flashtimer=flashtimer-1;
+      fill(flashhue,255,255,map(flashtimer,0,flashspeed,0,255)); 
+      noStroke();
+      rect(x+boxwidth/2+20,y,boxwidth/2+5,boxheight/3);
+    }
+
+    if (flashing==1 && flashtimer==0) {
+      flashing=0;
+    }
+    
+    confirmed_lastframe=(int)confirmed;
+    deaths_lastframe=(int)deaths;
   }
 
 

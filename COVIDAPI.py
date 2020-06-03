@@ -1,13 +1,13 @@
 import requests
 import json
 from xml.dom import minidom
-import MySQLdb as mariadb #pip install mysqlclient
+import MySQLdb as mariadb #On PC: pip install mysqlclient or for RaspPi: sudo pip3 install MySQL client on 
 from datetime import datetime  
 from datetime import timedelta  
 from datetime import date
 import os
 
-mariadb_connection = mariadb.connect(user='root', password='313920', database='COVID')
+mariadb_connection = mariadb.connect(user='root', password='313920Raspberry', database='COVID')
 try:
     cursor = mariadb_connection.cursor()
 except mariadb.Error as err:

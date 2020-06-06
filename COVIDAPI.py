@@ -1,7 +1,7 @@
 import requests
 import json
 from xml.dom import minidom
-import MySQLdb as mariadb #On PC: pip install mysqlclient or for RaspPi: sudo pip3 install MySQL client on 
+import MySQLdb as mariadb #On PC: pip install mysqlclient or for RaspPi: sudo pip3 install MySQL client
 from datetime import datetime  
 from datetime import timedelta  
 from datetime import date

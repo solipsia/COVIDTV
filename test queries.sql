@@ -1,4 +1,4 @@
-
+USE COVID;
 
 #SELECT * FROM countries
 #INSERT INTO countries (name,slug,CODE) VALUES ('Solomon Islands','solomon-islands','SB')

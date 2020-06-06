@@ -173,7 +173,7 @@ void draw() {
   if (transitioning==1 && transitiontimer==-transitionspeed) {
     transitioning=0;
   }
-  
+    fill(255,255,255);noStroke();textAlign(LEFT);text((int)frameRate,10,10);
 }
 
 void reportPercentageofWorld() {
